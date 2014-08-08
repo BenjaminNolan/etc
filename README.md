@@ -7,6 +7,6 @@ GitHub's suggested name of `mustachioed-octo-tribble` was very tempting, but I w
 
 `/etc/profile.d/motd.sh` and `/etc/profile.d/git_prompt.sh` are probably the most useful scripts here for people that /aren't/ me.
 
-`/etc/profile.d/motd.sh` prints out on login (or `source /etc/profile`) the server's FQDN, public and private IPv4 and IPv6 addresses, and distribution name and version.
+`/etc/profile.d/motd.sh` prints out on login (or `source /etc/profile`) the server's FQDN, public and private IPv4 and IPv6 addresses, and distribution name and version. Yes, I'm aware of `libpam_motd`, but this method doesn't require me to install and configure a module to do it, and, like all good sysadmins, I'm lazy and would rather just write a script to do it when the alternative is to write a script that's loaded by a library that I'd have to configure first. If you already have `libpam_motd` installed, you should be able to just drop this into `/etc/update-motd.d/` and it'll be inserted into your MOTD in the normal manner.
 
 `/etc/profile.d/git_prompt.sh` adds the currently active git branch name to the prompt when you cd to a git repository.
