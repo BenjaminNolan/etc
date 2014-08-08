@@ -1,0 +1,20 @@
+" Clear
+autocmd!
+
+set nocompatible
+set smartindent
+set history=50
+set incsearch
+set bs=2
+set background=dark
+set noerrorbells
+set esckeys
+set fenc=utf8
+set nowrap
+set smartcase
+set hlsearch
+set tabstop=4
+set shiftwidth=4
+
+syntax on
+colorscheme ben

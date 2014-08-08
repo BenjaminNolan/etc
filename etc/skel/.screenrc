@@ -1,0 +1,6 @@
+# This screenrc adds a nice line at the bottom of the screen which has the short hostname, the list of windows with their numbers and names, and the current date and time
+
+hardstatus on
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{=kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][ %{B}%Y-%m-%d %{W}%c %{g}]'
+startup_message off
