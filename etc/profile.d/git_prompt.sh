@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
 # This adds the active git branch name to the prompt when you cd to a repository on the command line
 
 function parse_git_branch_and_add_brackets {
