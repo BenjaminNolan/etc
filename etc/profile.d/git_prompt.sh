@@ -5,7 +5,7 @@
 
 # This adds the active git branch name to the prompt when you cd to a repository on the command line
 
-function parse_git_branch_and_add_brackets {
+function parse_git_branch_and_add_brackets() {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\ \[\1\]/'
 }
 
