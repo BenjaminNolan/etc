@@ -35,5 +35,5 @@ if [ "$PS1" ]; then
     echo -e "\033[1;34m║ \033[0;37mdo this by changing the encoding drop-down on the Translation page to UTF-8. \033[1;34m║"
     echo -e "\033[1;34m║                                                                              \033[1;34m║"
     echo -e "\033[1;34m╚══════════════════════════════════════════════════════════════════════════════╝"
-    echo -e " "
+    echo -e "\033[0m "
 fi
