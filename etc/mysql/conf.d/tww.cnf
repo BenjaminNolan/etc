@@ -1,0 +1,49 @@
+# https://github.com/TwoWholeWorms/etc
+#
+# This is my preferred starting point when setting up new MySQL servers. A few explanations:
+#
+# - utf8mb4: Those smiley face house plane emoji things you stick in your text messages are multi-byte characters.
+#            There are a few ways of storing them in databases, but utf8mb4 allows you to store them and pretty much
+#            everything else in a database string unencoded. Downside is that every single character is stored as 4
+#            bytes, so indexes are much longer, which requires innodb_large_prefix=ON in a lot of cases.
+#
+# - innodb_large_prefix=ON: Allows indices up to 3072 bytes /in total/. When creating a multi-column key which
+#                           involves VARCHAR columns, you have to multiply the VARCHAR's (length) part by 3. If you're
+#                           also using utf8mb4 as your main encoding, then you have to multiply /that/ length by 4. So,
+#                           if you have a 32-character session name and a 40-character session id, and you create an
+#                           index on them, then that index's internal length is the total of both columns — 72 —
+#                           multiplied by 3, then that whole result multiplied by 4. So, 864, which is greater than
+#                           the 767 bytes MySQL allows without this option on.
+#
+# - BARRACUDA: MySQL's new file storage format. It's much more efficient, much faster, and it allows you to set
+#              innodb_large_prefix=ON. :) I noticed a big performance increase when switching to this, but YMMV.
+#
+# - utf8mb4_unicode_ci: Collation that sorts things by their order in the unicode spec, but case insensitively. Just
+#                       seems to generate better results across all languages in general. If you're storing a specific
+#                       language and only that language, then you may prefer utf8mb4_arabic_ci or utf8mb4_swedish_ci,
+#                       etc.
+#
+# - innodb_strict_mode: Makes InnoDB generate proper errors instead of just warning about some things which are
+#                       actually data loss. Bad InnoDB. You WILL behave like a real rDBMS!
+#
+# - innodb_file_per_table: Why would you not?
+#
+# - default_time_zone='+00:00': Store everything in UTC, always, and then do the timezone conversion on the
+#                               front-end. You'll save yourself a lot of hassle. Also, remember to set your servers'
+#                               timezones (and PHP's default, if you're using it) to UTC as well.
+
+[client]
+default-character-set = utf8mb4
+
+[mysqld]
+innodb_large_prefix=ON
+innodb_file_format=BARRACUDA
+character-set-server=utf8mb4
+collation-server=utf8mb4_unicode_ci
+innodb_strict_mode=ON
+innodb_file_per_table=ON
+default_time_zone='+00:00'
+
+[mysql]
+default-character-set = utf8mb4
+
