@@ -9,9 +9,9 @@ parse_git_branch_and_add_brackets() {
 if [ "$PS1" ]; then
     if [ "$BASH" ]; then
         if [ "`id -u`" -eq 0 ]; then
-            export PS1='\[\033[1;31m\]${USER}@${HOSTNAME}\[\033[1;33m\]$(parse_git_branch_and_add_brackets) \[\033[1;34m\]${PWD/#$HOME/~} $\[\033[0m\] '
+            export PS1='\[\033[1;34m\][`date "+%Y-%m-%d %H:%M:%S"`] \[\033[1;31m\]${USER}@${HOSTNAME}\[\033[1;33m\]$(parse_git_branch_and_add_brackets) \[\033[1;34m\]${PWD/#$HOME/~} $\[\033[0m\] '
         else
-            export PS1='\[\033[1;32m\]${USER}@${HOSTNAME}\[\033[1;33m\]$(parse_git_branch_and_add_brackets) \[\033[1;34m\]${PWD/#$HOME/~} $\[\033[0m\] '
+            export PS1='\[\033[1;34m\][`date "+%Y-%m-%d %H:%M:%S"`] \[\033[1;32m\]${USER}@${HOSTNAME}\[\033[1;33m\]$(parse_git_branch_and_add_brackets) \[\033[1;34m\]${PWD/#$HOME/~} $\[\033[0m\] '
         fi
     else
         if [ "`id -u`" -eq 0 ]; then
