@@ -4,8 +4,16 @@ if [ "$EUID" -ne 0 ]; then
 	echo "ROOT MEH! (sudo -s)"
 fi
 
-apt-get install -y python python-apt xterm konsole zenity
-wget http://repo.steampowered.com/steam/archive/precise/steam_latest.deb
+if [[ "$(id -u steam > /dev/null 2>&1; echo $?)" != "0" ]]; then
+	useradd -m -s /bin/bash steam
+fi
+sudo apt-get install steamcmd
 
-dpkg -i steam_latest.deb
+if [[ -f /usr/bin/steamcmd ]] || [[ -s /usr/bin/steamcmd ]]; then
+	rm -f /usr/bin/steamcmd
+fi
+ln -s /usr/games/steamcmd /usr/bin/steamcmd
+
+echo "Now run steamcmd and install your apps as per their instructions. Don't forget to 'sudo -s -u steam' in future. :)"
+sudo -s -u steam
 
